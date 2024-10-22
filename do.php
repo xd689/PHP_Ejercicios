@@ -48,10 +48,11 @@ el número grande. Le pido echo con un espacio para que me muestre cada número 
 // Condición: uso de un bucle for
 // Ejemplo: deDosEnDos(2,10): 2 4 6 8 10
 function deDosEnDos($inf, $sup) {
+	$r="";
 	for ($i=$inf; $i <= $sup; $i +=2 ) { 
-		echo "$i ";	
+		$r = $r."$i ";
 	}
-	echo "<br>";
+	return $r;
 }
 
 // 2.0 puntos
@@ -63,28 +64,39 @@ si es divisible entre 2 ya que siempre que no lo sea hará un echo y aumentará 
 // Condición: uso de un bucle while
 // Ejemplo: pares(2, 10): 3 5 7 9
 function impares($inf, $sup) {
+	$r="";
 	$i = $inf; 
 	while ($i <= $sup) {
 		if ($i % 2 != 0) {
-			echo "$i ";
+			$r = $r."$i ";
 		}
 		$i++;
 	}
-	echo "<br>"; 
+	return $r; 
 }
 
 // 2.0 puntos
 // Implemente función que muestre la factorización en números primos de un número
 // Ejemplo: primos(8): 2 2 2, primos(210): 2 3 5 7  
-function primos($n) {
+// OJO CON ESTA
+/*function primos($n) {
+	$resultado = '';
+    $divisor = 2;
+    for ($i = $divisor; $n > 1; $i++) {
+        while ($n % $i == 0) {
+            if ($resultado !== '') {
+                $resultado .= ' ';
+            }
+            $resultado .= $i;
+            $n /= $i;
+        }
+    }
+    return $resultado;
 }
-
+*/
 $n1 = $_REQUEST['n1'];
 $n2 = $_REQUEST['n2'];
 menorMayor($n1, $n2);
-sumatorio($n1, $n2);
-deDosEnDos($n1, $n2);
-impares($n1, $n2);
 
 // 1.0 puntos
 // Implemente las demás opciones del condicional múltiple
@@ -93,12 +105,14 @@ switch ($_REQUEST['op']) {
 		echo "El sumatorio de $n1 a $n2 es ".sumatorio($n1,$n2)."<br>\n";
 		break;
 	case 'o2':
-		echo "El rango de números pares $n1 a $n2 es ".deDosEnDos($n1,$n2)."<br>\n";// tú código aquí
+		echo "El rango contando de dos en dos $n1 a $n2 es ".deDosEnDos($n1,$n2)."<br>\n";
+		break;
 	case 'o3':
-		echo "El rango de número impares $n1 a $n2 es ".impares($n1,$n2)."<br>\n";// tú código aquí
+		echo "El rango de número impares $n1 a $n2 es ".impares($n1,$n2)."<br>\n";
 		break;
 	case 'o4':
-		// tú código aquí
+		echo "La factorización en primos de $n1 es ".primos($n1)."<br>\n";
+		echo "La factorización en primos de $n2 es ".primos($n2)."<br>\n";
 		break;
 }
 ?>
